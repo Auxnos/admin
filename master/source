@@ -2,3 +2,4 @@ if getgenv().AdminIsLoaded then
 return
 end
 
+loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Auxnos/admin/main/library/scriptLibrary"))()
